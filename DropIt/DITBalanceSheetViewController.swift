@@ -45,6 +45,7 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     
     func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectRowAt indexPath: IndexPath) {
         print("DropdownMenu didSelect \(indexPath.row)")
+        self.performSegue(withIdentifier: "numericInputSegue", sender: self)
     }
     
     
