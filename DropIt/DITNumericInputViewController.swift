@@ -8,8 +8,9 @@
 
 import UIKit
 
-class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate {
+class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
+    var completion: ((Int) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +20,13 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate 
         numberKeyboard.allowsDecimalPoint = true
         numberKeyboard.delegate = self
         textField.inputView = numberKeyboard
+        textField.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: .UITextFieldTextDidChange, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +61,13 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate 
             textField.text = formattedString
         } else {
             textField.text = nil
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        NSLog(textField.text!)
+        dismiss(animated: true) {
+            self.completion?(Int(textField.text!) ?? 0)
         }
     }
     

@@ -11,6 +11,7 @@ import DropdownMenu
 
 class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate {
     let paidItemCellIdentifier = "PaidItemCell"
+    var numericInputCompletion: ((Int) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +25,19 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "numericInputSegue" {
+            if let nvc = segue.destination as? UINavigationController,
+                let numericInputVC = nvc.topViewController as? DITNumericInputViewController {
+                numericInputVC.completion = numericInputCompletion
+            }
+        }
     }
-    */
     
     @IBAction func addButtonTouchUpInsideAction(_ sender: Any) {
         let income = DropdownItem(title: "수입")
@@ -44,7 +49,7 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     }
     
     func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectRowAt indexPath: IndexPath) {
-        print("DropdownMenu didSelect \(indexPath.row)")
+        numericInputCompletion = [addIncomeItem, addPaidItem][indexPath.row]
         self.performSegue(withIdentifier: "numericInputSegue", sender: self)
     }
     
@@ -62,4 +67,12 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         return cell
     }
     
+    
+    func addIncomeItem(with value: Int) {
+        NSLog("addIncomeItem \(value)")
+    }
+    
+    func addPaidItem(with value: Int) {
+        NSLog("addPaidItem \(value)")
+    }
 }
