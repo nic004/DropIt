@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8400CCC1E54272600378733 /* CoreStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8400CCB1E54272600378733 /* CoreStore.framework */; };
 		D867BD3E1E2F2BCF006FE481 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D867BD3D1E2F2BCF006FE481 /* AppDelegate.swift */; };
 		D867BD431E2F2BCF006FE481 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D867BD411E2F2BCF006FE481 /* Main.storyboard */; };
 		D867BD461E2F2BCF006FE481 /* DropIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D867BD441E2F2BCF006FE481 /* DropIt.xcdatamodeld */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D8400CCB1E54272600378733 /* CoreStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreStore.framework; path = Carthage/Build/iOS/CoreStore.framework; sourceTree = "<group>"; };
 		D867BD3A1E2F2BCF006FE481 /* DropIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D867BD3D1E2F2BCF006FE481 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D867BD421E2F2BCF006FE481 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8F6A92D1E41EFA100B54379 /* DropdownMenu.framework in Frameworks */,
+				D8400CCC1E54272600378733 /* CoreStore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +106,7 @@
 		D8F6A92B1E41EFA100B54379 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8400CCB1E54272600378733 /* CoreStore.framework */,
 				D8F6A92C1E41EFA100B54379 /* DropdownMenu.framework */,
 			);
 			name = Frameworks;
@@ -187,6 +191,7 @@
 			);
 			inputPaths = (
 				Carthage/Build/iOS/DropdownMenu.framework,
+				Carthage/Build/iOS/CoreStore.framework,
 			);
 			outputPaths = (
 			);

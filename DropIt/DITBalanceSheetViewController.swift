@@ -8,15 +8,23 @@
 
 import UIKit
 import DropdownMenu
+import CoreStore
 
 class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate {
     let paidItemCellIdentifier = "PaidItemCell"
-    var numericInputCompletion: ((Int) -> Void)?
+    var numericInputCompletion: ((Float) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // for test
+        let amounts = CoreStore.fetchAll(From<Amount>())
+        amounts?.forEach { print($0) }
+        
+        let paids = CoreStore.fetchAll(From<Amount>(), Where("value < 0"))
+        paids?.forEach { print($0.value) }
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,12 +75,22 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         return cell
     }
     
-    
-    func addIncomeItem(with value: Int) {
-        NSLog("addIncomeItem \(value)")
+    func addAmount(value: Float) {
+        CoreStore.beginAsynchronous {
+            let amount = $0.create(Into<Amount>())
+            amount.date = Date() as NSDate
+            amount.value = Float(value)
+            $0.commit()
+        }
     }
     
-    func addPaidItem(with value: Int) {
+    func addIncomeItem(with value: Float) {
+        NSLog("addIncomeItem \(value)")
+        addAmount(value: value)
+    }
+    
+    func addPaidItem(with value: Float) {
         NSLog("addPaidItem \(value)")
+        addAmount(value: -value)
     }
 }

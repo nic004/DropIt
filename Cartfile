@@ -1,1 +1,2 @@
 github "teambition/DropdownMenu"
+github "JohnEstropia/CoreStore" >= 3.0.0

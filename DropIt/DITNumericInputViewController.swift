@@ -10,7 +10,13 @@ import UIKit
 
 class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
-    var completion: ((Int) -> Void)?
+    var completion: ((Float) -> Void)?
+    lazy var formatter: NumberFormatter = {
+        let f = NumberFormatter()
+        f.numberStyle = .decimal
+        f.maximumFractionDigits = 10
+        return f
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,16 +55,14 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate,
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
+    func numberWithOutCommas(text: String) -> NSNumber? {
+        let numberWithOutCommas = text.replacingOccurrences(of: ",", with: "")
+        return formatter.number(from: numberWithOutCommas)
+    }
+    
     func textFieldDidChange(_ sender : AnyObject) {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 10
-        
-        let newString = textField.text!
-        let numberWithOutCommas = newString.replacingOccurrences(of: ",", with: "")
-        if let number = formatter.number(from: numberWithOutCommas) {
-            let formattedString = formatter.string(from: number)
-            textField.text = formattedString
+        if let number = numberWithOutCommas(text: textField.text!) {
+            textField.text = formatter.string(from: number)
         } else {
             textField.text = nil
         }
@@ -67,7 +71,7 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate,
     func textFieldDidEndEditing(_ textField: UITextField) {
         NSLog(textField.text!)
         dismiss(animated: true) {
-            self.completion?(Int(textField.text!) ?? 0)
+            self.completion?(Float(self.numberWithOutCommas(text: textField.text!) ?? 0))
         }
     }
     
