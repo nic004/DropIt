@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             catch {
                 NSLog("addStorageAndWait failed")
+                try! FileManager.default.removeItem(at: modelURL)
             }
         }
         return true

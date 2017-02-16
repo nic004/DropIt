@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gE0-zO-zVH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gE0-zO-zVH">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,13 +36,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PaidItemCell" id="Uap-sq-43n">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PaidItemCell" id="Uap-sq-43n" customClass="DITBalanceSheetTableViewCell" customModule="DropIt" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uap-sq-43n" id="ImD-zA-14z">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKB-Jj-JUA">
+                                            <rect key="frame" x="349" y="14.333333333333332" width="31" height="14.333333333333332"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elk-9j-ljT">
+                                            <rect key="frame" x="36" y="13.333333333333336" width="35.333333333333329" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="MKB-Jj-JUA" secondAttribute="trailing" constant="26" id="aD0-Bi-hRS"/>
+                                        <constraint firstItem="Elk-9j-ljT" firstAttribute="centerY" secondItem="ImD-zA-14z" secondAttribute="centerY" id="e0d-gd-qg3"/>
+                                        <constraint firstItem="Elk-9j-ljT" firstAttribute="leading" secondItem="ImD-zA-14z" secondAttribute="leadingMargin" constant="28" id="ler-6h-zfN"/>
+                                        <constraint firstItem="MKB-Jj-JUA" firstAttribute="centerY" secondItem="ImD-zA-14z" secondAttribute="centerY" id="on9-js-QD7"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="title" destination="Elk-9j-ljT" id="8Lv-Iq-ZJf"/>
+                                    <outlet property="value" destination="MKB-Jj-JUA" id="2Kt-9k-cL7"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -64,7 +89,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IxI-gh-oLN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="255" y="-64"/>
+            <point key="canvasLocation" x="253.62318840579712" y="-64.402173913043484"/>
         </scene>
         <!--Numeric Input View Controller-->
         <scene sceneID="MNo-Lt-rgr">
@@ -79,17 +104,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="금액(원)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jBp-Xz-zXh">
-                                <rect key="frame" x="33" y="111" width="348" height="37"/>
+                                <rect key="frame" x="33" y="182" width="348" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uf0-be-5Vy" userLabel="underLine">
-                                <rect key="frame" x="33" y="152" width="348" height="3"/>
+                                <rect key="frame" x="33" y="223" width="348" height="3"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.80070287726549427" blue="0.34344973570959614" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zx-Zc-5T9" userLabel="underLine">
+                                <rect key="frame" x="33" y="142" width="348" height="3"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.8007028773" blue="0.34344973569999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="내용" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PmI-Pn-qLN">
+                                <rect key="frame" x="33" y="106" width="348" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -102,6 +139,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="textField" destination="jBp-Xz-zXh" id="mc6-rB-xOA"/>
+                        <outlet property="titleTextField" destination="PmI-Pn-qLN" id="ppP-gN-O1a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t2J-SZ-c3J" userLabel="First Responder" sceneMemberID="firstResponder"/>

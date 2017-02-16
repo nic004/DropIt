@@ -9,8 +9,10 @@
 import UIKit
 
 class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate, UITextFieldDelegate {
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var textField: UITextField!
-    var completion: ((Float) -> Void)?
+    
+    var completion: ((String, Float) -> Void)?
     lazy var formatter: NumberFormatter = {
         let f = NumberFormatter()
         f.numberStyle = .decimal
@@ -71,7 +73,9 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate,
     func textFieldDidEndEditing(_ textField: UITextField) {
         NSLog(textField.text!)
         dismiss(animated: true) {
-            self.completion?(Float(self.numberWithOutCommas(text: textField.text!) ?? 0))
+            if let title = self.titleTextField.text {
+                self.completion?(title, Float(self.numberWithOutCommas(text: textField.text!) ?? 0))
+            }
         }
     }
     

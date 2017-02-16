@@ -7,11 +7,12 @@
     </entity>
     <entity name="Amount" representedClassName="Amount" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="items" inverseEntity="Account" syncable="YES"/>
     </entity>
     <elements>
         <element name="Account" positionX="-54" positionY="9" width="128" height="90"/>
-        <element name="Amount" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Amount" positionX="-63" positionY="-18" width="128" height="105"/>
     </elements>
 </model>
