@@ -10,11 +10,55 @@ import UIKit
 import DropdownMenu
 import CoreStore
 
+enum Direction: String {
+    case Income = "수입"
+    case Paid = "지출"
+    
+    func items() -> [Direction] {
+        return [.Income, .Paid]
+    }
+}
+
+protocol SectionItemProtocol {
+    var direction: Direction {get set}
+    var items: Array<Amount> {get set}
+}
+
+struct SectionItem: SectionItemProtocol {
+    var direction: Direction
+    var items: Array<Amount>
+    
+    init(direction: Direction, items: Array<Amount>) {
+        self.direction = direction
+        self.items = items
+    }
+}
+
+extension Array where Iterator.Element: SectionItemProtocol {
+    func itemFrom(indexPath: IndexPath) -> Amount? {
+        guard indexPath.section < self.count else {
+            return nil
+        }
+        return (self[indexPath.section] as! SectionItemProtocol).items[indexPath.row]
+    }
+    
+    func deleteItemAtIndexPath(indexPath: IndexPath) {
+        guard indexPath.section < self.count else { return }
+        var section = self[indexPath.section] as! SectionItemProtocol
+        guard indexPath.row < section.items.count else { return }
+        section.items.remove(at: indexPath.row)
+    }
+}
+
+
 class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate {
     let paidItemCellIdentifier = "PaidItemCell"
     var numericInputCompletion: ((String, Float) -> Void)?
-    var incomeItems: Array<Amount>?
-    var paidItems: Array<Amount>?
+//    var incomeItems: Array<Amount>?
+//    var paidItems: Array<Amount>?
+    
+    
+    var sections = Array<SectionItem>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +69,19 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         let amounts = CoreStore.fetchAll(From<Amount>())
         amounts?.forEach { print($0) }
         
-        incomeItems = CoreStore.fetchAll(From<Amount>(), Where("value >= 0"))
+        let incomeItems = CoreStore.fetchAll(From<Amount>(), Where("value >= 0"))
         incomeItems?.forEach { print($0.value) }
         
-        paidItems = CoreStore.fetchAll(From<Amount>(), Where("value < 0"))
+        let paidItems = CoreStore.fetchAll(From<Amount>(), Where("value < 0"))
         paidItems?.forEach { print($0.value) }
+        
+        if let incomes = incomeItems {
+            sections.append(SectionItem(direction: .Income, items: incomes))
+        }
+        
+        if let paids = paidItems {
+            sections.append(SectionItem(direction: .Paid, items: paids))
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,21 +120,59 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return (incomeItems == nil ? 0 : 1) + (paidItems == nil ? 0 : 1)
+        return sections.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].direction.rawValue
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return [incomeItems, paidItems][section]?.count ?? 0
+        return sections[section].items.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: paidItemCellIdentifier, for: indexPath)
         if let bsCell = cell as? DITBalanceSheetTableViewCell,
-            let item = [incomeItems, paidItems][indexPath.section]?[indexPath.row] {
+            let item = sections.itemFrom(indexPath: indexPath) {
             bsCell.title.text = item.title
             bsCell.value.text = String(item.value)
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            confirmDelete(indexPath: indexPath)
+        }
+    }
+    
+    func confirmDelete(indexPath: IndexPath) {
+        let alert = UIAlertController(title: nil, message: "해당 아이템을 삭제합니다.", preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "OK", style: .destructive) { _ in self.deleteItem(indexPath: indexPath) }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteItem(indexPath: IndexPath) -> Void {
+        // fetchedResultController 같은 걸 써야한다.
+//        let item = sections.itemFrom(indexPath: indexPath)
+//        CoreStore.beginAsynchronous { (t) in
+//            t.delete(item)
+//            t.commit({ (r) in
+//                print("d")
+//            })
+//        }
+//        tableView.beginUpdates()
+//        tableView.deleteRows(at: [indexPath], with: .automatic)
+//        sections.deleteItemAtIndexPath(indexPath: indexPath)
+//        tableView.endUpdates()
     }
     
     func addAmount(title: String, value: Float) {
