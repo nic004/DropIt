@@ -51,12 +51,12 @@ extension Array where Iterator.Element: SectionItemProtocol {
 }
 
 
-class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate {
+class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate, ListObjectObserver {
     let paidItemCellIdentifier = "PaidItemCell"
     var numericInputCompletion: ((String, Float) -> Void)?
 //    var incomeItems: Array<Amount>?
 //    var paidItems: Array<Amount>?
-    
+    var monitor: ListMonitor<Amount>!
     
     var sections = Array<SectionItem>()
     
@@ -64,6 +64,13 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        monitor = CoreStore.monitorSectionedList(
+            From<Amount>(),
+            SectionBy("value") { Int($0!)! >= 0 ? Direction.Income.rawValue : Direction.Paid.rawValue },
+            OrderBy(.ascending("value")),
+            Tweak { $0.fetchBatchSize = 20 }
+        )
         
         // for test
         let amounts = CoreStore.fetchAll(From<Amount>())
@@ -194,4 +201,28 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         NSLog("addPaidItem \(value)")
         addAmount(title: title, value: -value)
     }
+    
+    // MARK: ListObserver
+    
+    func listMonitorWillChange(_ monitor: ListMonitor<Amount>) {
+        self.tableView.beginUpdates()
+    }
+    
+    func listMonitorDidChange(_ monitor: ListMonitor<Amount>) {
+        self.tableView.endUpdates()
+    }
+    
+    func listMonitorWillRefetch(_ monitor: ListMonitor<Amount>) {
+    }
+    
+    func listMonitorDidRefetch(_ monitor: ListMonitor<Amount>) {
+        self.tableView.reloadData()
+    }
+    
+    // MARK: ListObjectObserver
+    
+    func listMonitor(_ monitor: ListMonitor<Amount>, didInsertObject object: Amount, fromIndexPath indexPath: IndexPath) {}
+    func listMonitor(_ monitor: ListMonitor<Amount>, didDeleteObject object: Amount, fromIndexPath indexPath: IndexPath) {}
+    func listMonitor(_ monitor: ListMonitor<Amount>, didUpdateObject object: Amount, fromIndexPath indexPath: IndexPath) {}
+    func listMonitor(_ monitor: ListMonitor<Amount>, didMoveObject object: Amount, fromIndexPath indexPath: IndexPath) {}
 }
