@@ -19,76 +19,34 @@ enum Direction: String {
     }
 }
 
-protocol SectionItemProtocol {
-    var direction: Direction {get set}
-    var items: Array<Amount> {get set}
-}
-
-struct SectionItem: SectionItemProtocol {
-    var direction: Direction
-    var items: Array<Amount>
-    
-    init(direction: Direction, items: Array<Amount>) {
-        self.direction = direction
-        self.items = items
-    }
-}
-
-extension Array where Iterator.Element: SectionItemProtocol {
-    func itemFrom(indexPath: IndexPath) -> Amount? {
-        guard indexPath.section < self.count else {
-            return nil
-        }
-        return (self[indexPath.section] as! SectionItemProtocol).items[indexPath.row]
-    }
-    
-    func deleteItemAtIndexPath(indexPath: IndexPath) {
-        guard indexPath.section < self.count else { return }
-        var section = self[indexPath.section] as! SectionItemProtocol
-        guard indexPath.row < section.items.count else { return }
-        section.items.remove(at: indexPath.row)
-    }
-}
-
-
-class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate, ListObjectObserver {
+class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate, ListSectionObserver {
     let paidItemCellIdentifier = "PaidItemCell"
     var numericInputCompletion: ((String, Float) -> Void)?
-//    var incomeItems: Array<Amount>?
-//    var paidItems: Array<Amount>?
     var monitor: ListMonitor<Amount>!
     
-    var sections = Array<SectionItem>()
+    lazy var formatter: NumberFormatter = {
+        let f = NumberFormatter()
+        f.numberStyle = .decimal
+        f.maximumFractionDigits = 10
+        f.negativePrefix = ""
+        return f
+    }()
+    
+    deinit {
+        monitor.removeObserver(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         monitor = CoreStore.monitorSectionedList(
             From<Amount>(),
-            SectionBy("value") { Int($0!)! >= 0 ? Direction.Income.rawValue : Direction.Paid.rawValue },
-            OrderBy(.ascending("value")),
+            SectionBy("direction"),
+            OrderBy(.descending("date")),
             Tweak { $0.fetchBatchSize = 20 }
         )
-        
-        // for test
-        let amounts = CoreStore.fetchAll(From<Amount>())
-        amounts?.forEach { print($0) }
-        
-        let incomeItems = CoreStore.fetchAll(From<Amount>(), Where("value >= 0"))
-        incomeItems?.forEach { print($0.value) }
-        
-        let paidItems = CoreStore.fetchAll(From<Amount>(), Where("value < 0"))
-        paidItems?.forEach { print($0.value) }
-        
-        if let incomes = incomeItems {
-            sections.append(SectionItem(direction: .Income, items: incomes))
-        }
-        
-        if let paids = paidItems {
-            sections.append(SectionItem(direction: .Paid, items: paids))
-        }
+        monitor.addObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -127,23 +85,23 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return monitor.numberOfSections()
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].direction.rawValue
+        return monitor.sectionIndexTitles()[section]
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].items.count
+        return monitor.numberOfObjectsInSection(section)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: paidItemCellIdentifier, for: indexPath)
         if let bsCell = cell as? DITBalanceSheetTableViewCell,
-            let item = sections.itemFrom(indexPath: indexPath) {
-            bsCell.title.text = item.title
-            bsCell.value.text = String(item.value)
+            let item = monitor[safeIndexPath: indexPath] {
+            bsCell.title.text = "\(item.title!) (\(item.date!.toString(format: "yyyy.MM.dd")))"
+            bsCell.value.text = formatter.string(from: NSNumber(value: item.value))
         }
         return cell
     }
@@ -168,18 +126,12 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     }
     
     func deleteItem(indexPath: IndexPath) -> Void {
-        // fetchedResultController 같은 걸 써야한다.
-//        let item = sections.itemFrom(indexPath: indexPath)
-//        CoreStore.beginAsynchronous { (t) in
-//            t.delete(item)
-//            t.commit({ (r) in
-//                print("d")
-//            })
-//        }
-//        tableView.beginUpdates()
-//        tableView.deleteRows(at: [indexPath], with: .automatic)
-//        sections.deleteItemAtIndexPath(indexPath: indexPath)
-//        tableView.endUpdates()
+        if let item = monitor[safeIndexPath: indexPath] {
+            CoreStore.beginAsynchronous { (t) in
+                t.delete(item)
+                t.commit()
+            }
+        }
     }
     
     func addAmount(title: String, value: Float) {
@@ -221,8 +173,29 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     
     // MARK: ListObjectObserver
     
-    func listMonitor(_ monitor: ListMonitor<Amount>, didInsertObject object: Amount, fromIndexPath indexPath: IndexPath) {}
-    func listMonitor(_ monitor: ListMonitor<Amount>, didDeleteObject object: Amount, fromIndexPath indexPath: IndexPath) {}
-    func listMonitor(_ monitor: ListMonitor<Amount>, didUpdateObject object: Amount, fromIndexPath indexPath: IndexPath) {}
-    func listMonitor(_ monitor: ListMonitor<Amount>, didMoveObject object: Amount, fromIndexPath indexPath: IndexPath) {}
+    func listMonitor(_ monitor: ListMonitor<Amount>, didInsertObject object: Amount, toIndexPath indexPath: IndexPath) {
+        self.tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
+    func listMonitor(_ monitor: ListMonitor<Amount>, didDeleteObject object: Amount, fromIndexPath indexPath: IndexPath) {
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
+    func listMonitor(_ monitor: ListMonitor<Amount>, didUpdateObject object: Amount, atIndexPath indexPath: IndexPath) {}
+    
+    func listMonitor(_ monitor: ListMonitor<Amount>, didMoveObject object: Amount, fromIndexPath: IndexPath, toIndexPath: IndexPath) {
+        self.tableView.deleteRows(at: [fromIndexPath], with: .automatic)
+        self.tableView.insertRows(at: [toIndexPath], with: .automatic)
+    }
+    
+    // MARK: ListSectionObserver
+    
+    func listMonitor(_ monitor: ListMonitor<Amount>, didInsertSection sectionInfo: NSFetchedResultsSectionInfo, toSectionIndex sectionIndex: Int) {
+        self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
+    }
+    
+    
+    func listMonitor(_ monitor: ListMonitor<Amount>, didDeleteSection sectionInfo: NSFetchedResultsSectionInfo, fromSectionIndex sectionIndex: Int) {
+        self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
+    }
 }

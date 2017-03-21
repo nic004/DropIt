@@ -14,6 +14,8 @@
 		D867BD481E2F2BCF006FE481 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D867BD471E2F2BCF006FE481 /* Assets.xcassets */; };
 		D867BD4B1E2F2BCF006FE481 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D867BD491E2F2BCF006FE481 /* LaunchScreen.storyboard */; };
 		D867BD531E2F3018006FE481 /* DITBalanceSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D867BD521E2F3018006FE481 /* DITBalanceSheetViewController.swift */; };
+		D88C6F2A1E80D0F800CCB153 /* Amount+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88C6F291E80D0F800CCB153 /* Amount+Ext.swift */; };
+		D8AAD46E1E8121760016CB97 /* DITExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AAD46D1E8121760016CB97 /* DITExtensions.swift */; };
 		D8C323361E43056B001B3869 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = D8C323351E43056B001B3869 /* Cartfile */; };
 		D8C3233C1E4308E2001B3869 /* MMNumberKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3233B1E4308E2001B3869 /* MMNumberKeyboard.m */; };
 		D8C3233E1E430F05001B3869 /* DITNumericInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C3233D1E430F05001B3869 /* DITNumericInputViewController.swift */; };
@@ -31,6 +33,8 @@
 		D867BD4A1E2F2BCF006FE481 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D867BD4C1E2F2BCF006FE481 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D867BD521E2F3018006FE481 /* DITBalanceSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITBalanceSheetViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		D88C6F291E80D0F800CCB153 /* Amount+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Amount+Ext.swift"; sourceTree = "<group>"; };
+		D8AAD46D1E8121760016CB97 /* DITExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITExtensions.swift; sourceTree = "<group>"; };
 		D8C323351E43056B001B3869 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		D8C323391E4308E2001B3869 /* DropIt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DropIt-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		D8C3233A1E4308E2001B3869 /* MMNumberKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMNumberKeyboard.h; path = "Libs/MMNumberKeyboard-master/Classes/MMNumberKeyboard.h"; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				D867BD521E2F3018006FE481 /* DITBalanceSheetViewController.swift */,
 				D8C3233D1E430F05001B3869 /* DITNumericInputViewController.swift */,
 				D8D8B79A1E55BA3000F47C19 /* DITBalanceSheetTableViewCell.swift */,
+				D88C6F291E80D0F800CCB153 /* Amount+Ext.swift */,
+				D8AAD46D1E8121760016CB97 /* DITExtensions.swift */,
 			);
 			path = DropIt;
 			sourceTree = "<group>";
@@ -214,7 +220,9 @@
 				D8D8B79B1E55BA3000F47C19 /* DITBalanceSheetTableViewCell.swift in Sources */,
 				D8C3233C1E4308E2001B3869 /* MMNumberKeyboard.m in Sources */,
 				D867BD531E2F3018006FE481 /* DITBalanceSheetViewController.swift in Sources */,
+				D88C6F2A1E80D0F800CCB153 /* Amount+Ext.swift in Sources */,
 				D867BD3E1E2F2BCF006FE481 /* AppDelegate.swift in Sources */,
+				D8AAD46E1E8121760016CB97 /* DITExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
