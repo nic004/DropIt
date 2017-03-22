@@ -1,0 +1,15 @@
+PODS:
+  - PickerController (0.1.2):
+    - SwiftyJSON (~> 3.0)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - PickerController (~> 0.1.0)
+
+SPEC CHECKSUMS:
+  PickerController: 56538c631937bde88c8b9fec8657b4116eb7d4fd
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: 3c466943d26452a7625858ce7d0ebacc96c43620
+
+COCOAPODS: 1.2.0

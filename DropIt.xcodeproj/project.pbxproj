@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F0F77AB2318855D254AB71A /* Pods_DropIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACFB1E58319032AC0BC4208 /* Pods_DropIt.framework */; };
 		D8400CCC1E54272600378733 /* CoreStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8400CCB1E54272600378733 /* CoreStore.framework */; };
 		D867BD3E1E2F2BCF006FE481 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D867BD3D1E2F2BCF006FE481 /* AppDelegate.swift */; };
 		D867BD431E2F2BCF006FE481 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D867BD411E2F2BCF006FE481 /* Main.storyboard */; };
@@ -14,6 +15,9 @@
 		D867BD481E2F2BCF006FE481 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D867BD471E2F2BCF006FE481 /* Assets.xcassets */; };
 		D867BD4B1E2F2BCF006FE481 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D867BD491E2F2BCF006FE481 /* LaunchScreen.storyboard */; };
 		D867BD531E2F3018006FE481 /* DITBalanceSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D867BD521E2F3018006FE481 /* DITBalanceSheetViewController.swift */; };
+		D86E8AF91E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86E8AF81E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift */; };
+		D86E8AFB1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86E8AFA1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift */; };
+		D86E8AFD1E825CEE00649AA8 /* podfile in Resources */ = {isa = PBXBuildFile; fileRef = D86E8AFC1E825CEE00649AA8 /* podfile */; };
 		D88C6F2A1E80D0F800CCB153 /* Amount+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88C6F291E80D0F800CCB153 /* Amount+Ext.swift */; };
 		D8AAD46E1E8121760016CB97 /* DITExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AAD46D1E8121760016CB97 /* DITExtensions.swift */; };
 		D8C323361E43056B001B3869 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = D8C323351E43056B001B3869 /* Cartfile */; };
@@ -24,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2ACA7E668622815C35F33098 /* Pods-DropIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-DropIt/Pods-DropIt.release.xcconfig"; sourceTree = "<group>"; };
+		9ACFB1E58319032AC0BC4208 /* Pods_DropIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DropIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C683721D4D1623C70290C40F /* Pods-DropIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DropIt/Pods-DropIt.debug.xcconfig"; sourceTree = "<group>"; };
 		D8400CCB1E54272600378733 /* CoreStore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreStore.framework; path = Carthage/Build/iOS/CoreStore.framework; sourceTree = "<group>"; };
 		D867BD3A1E2F2BCF006FE481 /* DropIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D867BD3D1E2F2BCF006FE481 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +40,9 @@
 		D867BD4A1E2F2BCF006FE481 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D867BD4C1E2F2BCF006FE481 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D867BD521E2F3018006FE481 /* DITBalanceSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITBalanceSheetViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		D86E8AF81E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITAddMonthlyManagementItemViewController.swift; sourceTree = "<group>"; };
+		D86E8AFA1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITMonthlyManagementTableViewController.swift; sourceTree = "<group>"; };
+		D86E8AFC1E825CEE00649AA8 /* podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = podfile; sourceTree = "<group>"; };
 		D88C6F291E80D0F800CCB153 /* Amount+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Amount+Ext.swift"; sourceTree = "<group>"; };
 		D8AAD46D1E8121760016CB97 /* DITExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITExtensions.swift; sourceTree = "<group>"; };
 		D8C323351E43056B001B3869 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -51,20 +61,32 @@
 			files = (
 				D8F6A92D1E41EFA100B54379 /* DropdownMenu.framework in Frameworks */,
 				D8400CCC1E54272600378733 /* CoreStore.framework in Frameworks */,
+				5F0F77AB2318855D254AB71A /* Pods_DropIt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C24ABBA49FA79E84FFE507D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C683721D4D1623C70290C40F /* Pods-DropIt.debug.xcconfig */,
+				2ACA7E668622815C35F33098 /* Pods-DropIt.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D867BD311E2F2BCF006FE481 = {
 			isa = PBXGroup;
 			children = (
+				D86E8AFC1E825CEE00649AA8 /* podfile */,
 				D8C323351E43056B001B3869 /* Cartfile */,
 				D867BD3C1E2F2BCF006FE481 /* DropIt */,
 				D8C323371E4308B3001B3869 /* Libs */,
 				D867BD3B1E2F2BCF006FE481 /* Products */,
 				D8F6A92B1E41EFA100B54379 /* Frameworks */,
+				9C24ABBA49FA79E84FFE507D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,6 +113,8 @@
 				D8D8B79A1E55BA3000F47C19 /* DITBalanceSheetTableViewCell.swift */,
 				D88C6F291E80D0F800CCB153 /* Amount+Ext.swift */,
 				D8AAD46D1E8121760016CB97 /* DITExtensions.swift */,
+				D86E8AF81E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift */,
+				D86E8AFA1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift */,
 			);
 			path = DropIt;
 			sourceTree = "<group>";
@@ -117,6 +141,7 @@
 			children = (
 				D8400CCB1E54272600378733 /* CoreStore.framework */,
 				D8F6A92C1E41EFA100B54379 /* DropdownMenu.framework */,
+				9ACFB1E58319032AC0BC4208 /* Pods_DropIt.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -128,10 +153,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D867BD4F1E2F2BCF006FE481 /* Build configuration list for PBXNativeTarget "DropIt" */;
 			buildPhases = (
+				4BDD2E366E398E82A8FAEB18 /* [CP] Check Pods Manifest.lock */,
 				D867BD361E2F2BCF006FE481 /* Sources */,
 				D867BD371E2F2BCF006FE481 /* Frameworks */,
 				D867BD381E2F2BCF006FE481 /* Resources */,
 				D8F6A92E1E41EFC300B54379 /* ShellScript */,
+				163150D6A033F1B41ECE729B /* [CP] Embed Pods Frameworks */,
+				60CE9A81ED1BFADA8F147A84 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,6 +213,7 @@
 			files = (
 				D867BD4B1E2F2BCF006FE481 /* LaunchScreen.storyboard in Resources */,
 				D867BD481E2F2BCF006FE481 /* Assets.xcassets in Resources */,
+				D86E8AFD1E825CEE00649AA8 /* podfile in Resources */,
 				D8C323361E43056B001B3869 /* Cartfile in Resources */,
 				D867BD431E2F2BCF006FE481 /* Main.storyboard in Resources */,
 			);
@@ -193,6 +222,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		163150D6A033F1B41ECE729B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DropIt/Pods-DropIt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BDD2E366E398E82A8FAEB18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		60CE9A81ED1BFADA8F147A84 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DropIt/Pods-DropIt-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D8F6A92E1E41EFC300B54379 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -219,9 +293,11 @@
 				D867BD461E2F2BCF006FE481 /* DropIt.xcdatamodeld in Sources */,
 				D8D8B79B1E55BA3000F47C19 /* DITBalanceSheetTableViewCell.swift in Sources */,
 				D8C3233C1E4308E2001B3869 /* MMNumberKeyboard.m in Sources */,
+				D86E8AFB1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift in Sources */,
 				D867BD531E2F3018006FE481 /* DITBalanceSheetViewController.swift in Sources */,
 				D88C6F2A1E80D0F800CCB153 /* Amount+Ext.swift in Sources */,
 				D867BD3E1E2F2BCF006FE481 /* AppDelegate.swift in Sources */,
+				D86E8AF91E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift in Sources */,
 				D8AAD46E1E8121760016CB97 /* DITExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +417,7 @@
 		};
 		D867BD501E2F2BCF006FE481 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C683721D4D1623C70290C40F /* Pods-DropIt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -362,6 +439,7 @@
 		};
 		D867BD511E2F2BCF006FE481 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2ACA7E668622815C35F33098 /* Pods-DropIt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

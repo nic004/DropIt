@@ -20,7 +20,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Gn9-4P-YoJ" kind="relationship" relationship="viewControllers" id="qXp-RO-UlY"/>
+                        <segue destination="zvV-in-GAQ" kind="relationship" relationship="viewControllers" id="vbG-3A-bL4"/>
+                        <segue destination="Gn9-4P-YoJ" kind="relationship" relationship="viewControllers" id="bbo-FW-VjB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NfX-jy-sVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -40,17 +41,17 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uap-sq-43n" id="ImD-zA-14z">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKB-Jj-JUA">
-                                            <rect key="frame" x="349" y="14.333333333333332" width="31" height="14.333333333333332"/>
+                                            <rect key="frame" x="349" y="14" width="31" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elk-9j-ljT">
-                                            <rect key="frame" x="36" y="13.333333333333336" width="35.333333333333329" height="17"/>
+                                            <rect key="frame" x="36" y="13" width="36" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -166,6 +167,147 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJQ-Ss-ryD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-692" y="-64"/>
+        </scene>
+        <!--월별관리-->
+        <scene sceneID="9g5-eG-BUd">
+            <objects>
+                <tableViewController id="aja-OM-aUL" customClass="DITMonthlyManagementTableViewController" customModule="DropIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2nb-fU-2lD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Nny-PU-c2G">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nny-PU-c2G" id="dQ5-pC-Ml9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aja-OM-aUL" id="W5H-qP-Qga"/>
+                            <outlet property="delegate" destination="aja-OM-aUL" id="NxZ-HC-gqp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="월별관리" id="2SL-HW-dS1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="CG3-WH-03O">
+                            <connections>
+                                <segue destination="tnH-cJ-tYt" kind="show" id="J87-Le-1hp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="028-qh-c4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="226" y="630"/>
+        </scene>
+        <!--월별관리 항목 추가-->
+        <scene sceneID="fes-WX-QfL">
+            <objects>
+                <viewController id="tnH-cJ-tYt" customClass="DITAddMonthlyManagementItemViewController" customModule="DropIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Afu-Tp-c40"/>
+                        <viewControllerLayoutGuide type="bottom" id="XRN-9C-W3F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="miZ-YB-LBh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="대상 월" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaE-we-kEJ">
+                                <rect key="frame" x="32" y="111" width="49" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q18-SO-ueX" userLabel="underLine">
+                                <rect key="frame" x="110" y="135" width="271" height="3"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.8007028773" blue="0.34344973569999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nXz-eq-uj8" userLabel="underLine">
+                                <rect key="frame" x="110" y="194" width="271" height="3"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.8007028773" blue="0.34344973569999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="시작 일자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pU5-cZ-gib">
+                                <rect key="frame" x="32" y="169" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fE5-RH-1ey" userLabel="underLine">
+                                <rect key="frame" x="110" y="245" width="271" height="3"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.8007028773" blue="0.34344973569999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="종료 일자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i17-Nq-nqh">
+                                <rect key="frame" x="32" y="220" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L4d-Vs-YMo">
+                                <rect key="frame" x="110" y="163" width="271" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tnH-cJ-tYt" id="tzn-Fe-5sU"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OdP-eA-tbD">
+                                <rect key="frame" x="110" y="211" width="271" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tnH-cJ-tYt" id="cdI-p3-fnZ"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="월별관리 항목 추가" id="VaM-RB-gXQ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QT3-pz-tCv">
+                            <connections>
+                                <segue destination="4xN-S8-g78" kind="unwind" unwindAction="cancelToListViewControllerWithSegue:" id="4VK-QV-64g"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="EDt-Nn-ndU"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="endDayField" destination="OdP-eA-tbD" id="ozO-mx-QEb"/>
+                        <outlet property="startDayField" destination="L4d-Vs-YMo" id="4QB-aP-KFk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rwP-yH-UW0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="4xN-S8-g78" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1073.913043478261" y="628.53260869565224"/>
+        </scene>
+        <!--월별관리-->
+        <scene sceneID="juP-Nd-EEi">
+            <objects>
+                <navigationController id="zvV-in-GAQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="월별관리" id="1QK-Kf-iHC"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0aO-hf-Rvw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aja-OM-aUL" kind="relationship" relationship="rootViewController" id="SMm-aI-Zq3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Mk-Ia-crn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-693" y="630"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C6Q-5M-hVX">

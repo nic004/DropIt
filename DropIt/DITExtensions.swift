@@ -24,3 +24,9 @@ extension NSDate {
         return SharedDateFormatter.instance.stringWithFormat(format, date: Date(timeIntervalSince1970: self.timeIntervalSince1970))
     }
 }
+
+extension Date {
+    func toString(format: String) -> String {
+        return SharedDateFormatter.instance.stringWithFormat(format, date: self)
+    }
+}
