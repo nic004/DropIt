@@ -5,6 +5,12 @@
         <attribute name="sn" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Amount" inverseName="account" inverseEntity="Amount" syncable="YES"/>
     </entity>
+    <entity name="Aggregation" representedClassName="Aggregation" syncable="YES" codeGenerationType="class">
+        <attribute name="begin" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="end" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
+    </entity>
     <entity name="Amount" representedClassName="Amount" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,5 +20,6 @@
     <elements>
         <element name="Account" positionX="-54" positionY="9" width="128" height="90"/>
         <element name="Amount" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Aggregation" positionX="-63" positionY="27" width="128" height="103"/>
     </elements>
 </model>

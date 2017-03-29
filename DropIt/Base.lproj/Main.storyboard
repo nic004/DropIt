@@ -41,7 +41,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uap-sq-43n" id="ImD-zA-14z">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKB-Jj-JUA">
@@ -181,7 +181,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nny-PU-c2G" id="dQ5-pC-Ml9">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -271,19 +271,34 @@
                                     <outlet property="delegate" destination="tnH-cJ-tYt" id="cdI-p3-fnZ"/>
                                 </connections>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ges-lX-HXD">
+                                <rect key="frame" x="110" y="106" width="271" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tnH-cJ-tYt" id="u0p-Wt-bjZ"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="월별관리 항목 추가" id="VaM-RB-gXQ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="QT3-pz-tCv">
                             <connections>
-                                <segue destination="4xN-S8-g78" kind="unwind" unwindAction="cancelToListViewControllerWithSegue:" id="4VK-QV-64g"/>
+                                <segue destination="4xN-S8-g78" kind="unwind" identifier="unwindToMonthlyManagement" unwindAction="cancelToListViewControllerWithSegue:" id="4VK-QV-64g"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="EDt-Nn-ndU"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="EDt-Nn-ndU">
+                            <connections>
+                                <action selector="saveAction:" destination="tnH-cJ-tYt" id="8IM-Y9-8I7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="endDayField" destination="OdP-eA-tbD" id="ozO-mx-QEb"/>
+                        <outlet property="monthField" destination="ges-lX-HXD" id="Nta-eV-2jT"/>
                         <outlet property="startDayField" destination="L4d-Vs-YMo" id="4QB-aP-KFk"/>
                     </connections>
                 </viewController>
