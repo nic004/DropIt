@@ -9,7 +9,7 @@
 import UIKit
 import CoreStore
 
-class DITMonthlyManagementTableViewController: UITableViewController, ListObserver {
+class DITMonthlyManagementTableViewController: UITableViewController, ListSectionObserver {
     var monitor: ListMonitor<Aggregation>!
 
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class DITMonthlyManagementTableViewController: UITableViewController, ListObserv
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return monitor.numberOfSections()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -138,5 +138,16 @@ class DITMonthlyManagementTableViewController: UITableViewController, ListObserv
     func listMonitor(_ monitor: ListMonitor<Aggregation>, didMoveObject object: Aggregation, fromIndexPath: IndexPath, toIndexPath: IndexPath) {
         self.tableView.deleteRows(at: [fromIndexPath], with: .automatic)
         self.tableView.insertRows(at: [toIndexPath], with: .automatic)
+    }
+    
+    // MARK: ListSectionObserver
+    
+    func listMonitor(_ monitor: ListMonitor<Aggregation>, didInsertSection sectionInfo: NSFetchedResultsSectionInfo, toSectionIndex sectionIndex: Int) {
+        self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
+    }
+    
+    
+    func listMonitor(_ monitor: ListMonitor<Aggregation>, didDeleteSection sectionInfo: NSFetchedResultsSectionInfo, fromSectionIndex sectionIndex: Int) {
+        self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
     }
 }
