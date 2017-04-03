@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import CoreStore
 
-class DITMonthlyManagementTableViewController: UITableViewController {
+class DITMonthlyManagementTableViewController: UITableViewController, ListObserver {
+    var monitor: ListMonitor<Aggregation>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +20,14 @@ class DITMonthlyManagementTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // Do any additional setup after loading the view.
+        monitor = CoreStore.monitorList(
+            From<Aggregation>(),
+            OrderBy(.descending("begin")),
+            Tweak { $0.fetchBatchSize = 20 }
+        )
+        monitor.addObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,24 +41,23 @@ class DITMonthlyManagementTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return monitor.numberOfObjects()
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: DITMonthlyManagementTableViewCell.reuseId, for: indexPath)
+        if let mmCell = cell as? DITMonthlyManagementTableViewCell,
+            let item = monitor[safeIndexPath: indexPath] {
+            mmCell.title.text = "\(item.title!)"
+        }
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -85,14 +94,49 @@ class DITMonthlyManagementTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let balanceSheetVC = segue.destination as? DITBalanceSheetViewController,
+            let selectedIndexPath = tableView.indexPathForSelectedRow {
+            balanceSheetVC.aggregation = monitor[selectedIndexPath.row]
+        }
     }
-    */
+    
+    // MARK: ListObserver
+    
+    func listMonitorWillChange(_ monitor: ListMonitor<Aggregation>) {
+        self.tableView.beginUpdates()
+    }
+    
+    func listMonitorDidChange(_ monitor: ListMonitor<Aggregation>) {
+        self.tableView.endUpdates()
+    }
+    
+    func listMonitorWillRefetch(_ monitor: ListMonitor<Aggregation>) {
+    }
+    
+    func listMonitorDidRefetch(_ monitor: ListMonitor<Aggregation>) {
+        self.tableView.reloadData()
+    }
 
+    // MARK: ListObjectObserver
+    
+    func listMonitor(_ monitor: ListMonitor<Aggregation>, didInsertObject object: Aggregation, toIndexPath indexPath: IndexPath) {
+        self.tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
+    func listMonitor(_ monitor: ListMonitor<Aggregation>, didDeleteObject object: Aggregation, fromIndexPath indexPath: IndexPath) {
+        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
+    func listMonitor(_ monitor: ListMonitor<Aggregation>, didUpdateObject object: Aggregation, atIndexPath indexPath: IndexPath) {}
+    
+    func listMonitor(_ monitor: ListMonitor<Aggregation>, didMoveObject object: Aggregation, fromIndexPath: IndexPath, toIndexPath: IndexPath) {
+        self.tableView.deleteRows(at: [fromIndexPath], with: .automatic)
+        self.tableView.insertRows(at: [toIndexPath], with: .automatic)
+    }
 }

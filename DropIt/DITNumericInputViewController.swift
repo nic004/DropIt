@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import PickerController
 
 class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate, UITextFieldDelegate {
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var amountField: UITextField!
+    @IBOutlet weak var dateTextField: UITextField!
     
-    var completion: ((String, Float) -> Void)?
+    let dateFormat = "yyyy. MM. dd."
+    var completion: ((String, Float, Date) -> Void)?
     lazy var formatter: NumberFormatter = {
         let f = NumberFormatter()
         f.numberStyle = .decimal
@@ -27,8 +30,7 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate,
         let numberKeyboard = MMNumberKeyboard(frame: CGRect.zero)
         numberKeyboard.allowsDecimalPoint = true
         numberKeyboard.delegate = self
-        textField.inputView = numberKeyboard
-        textField.delegate = self
+        amountField.inputView = numberKeyboard
         
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: .UITextFieldTextDidChange, object: nil)
     }
@@ -57,26 +59,55 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate,
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func doneButtonTouchUpInsideAction(_ sender: Any) {
+        dismiss(animated: true) {
+            guard let title = self.titleTextField.text,
+                let dateText = self.dateTextField.text,
+                let date = dateText.dateWith(format: self.dateFormat) else {
+                return
+            }
+            self.completion?(title, Float(self.numberWithOutCommas(text: self.amountField.text!) ?? 0), date)
+        }
+    }
+    
     func numberWithOutCommas(text: String) -> NSNumber? {
         let numberWithOutCommas = text.replacingOccurrences(of: ",", with: "")
         return formatter.number(from: numberWithOutCommas)
     }
     
-    func textFieldDidChange(_ sender : AnyObject) {
-        if let number = numberWithOutCommas(text: textField.text!) {
-            textField.text = formatter.string(from: number)
+    func textFieldDidChange(_ notification : NSNotification?) {
+        guard let textField = notification?.object as? UITextField, textField === amountField else {
+            return
+        }
+        
+        if let number = numberWithOutCommas(text: amountField.text!) {
+            amountField.text = formatter.string(from: number)
         } else {
-            textField.text = nil
+            amountField.text = nil
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        NSLog(textField.text!)
-        dismiss(animated: true) {
-            if let title = self.titleTextField.text {
-                self.completion?(title, Float(self.numberWithOutCommas(text: textField.text!) ?? 0))
-            }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        guard textField === dateTextField else {
+            return true
         }
+        
+        let pickerController = PickerController_Date(title: "", onDone: {
+            textField.text = $0.toString(format: self.dateFormat)
+            textField.resignFirstResponder()
+            }, onCancel: {
+        })
+        
+        if let datePicker = pickerController.view.subviews[0].subviews[1] as? UIDatePicker {
+            datePicker.datePickerMode = .date
+        }
+        
+        pickerController.modalPresentationStyle = .overFullScreen
+        present(pickerController, animated: false) {
+            pickerController.setDate(date: Date())
+        }
+        
+        return false
     }
     
 }

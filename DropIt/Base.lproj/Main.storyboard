@@ -110,6 +110,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rDx-Cg-fnM" id="MHS-DR-6NP"/>
+                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uf0-be-5Vy" userLabel="underLine">
                                 <rect key="frame" x="33" y="223" width="348" height="3"/>
@@ -128,18 +131,39 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="사용일" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9QM-JK-V6j">
+                                <rect key="frame" x="33" y="268" width="348" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="rDx-Cg-fnM" id="jM9-uF-xbp"/>
+                                </connections>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9w8-gW-opZ" userLabel="underLine">
+                                <rect key="frame" x="33" y="309" width="348" height="3"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.8007028773" blue="0.34344973569999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="PRH-BE-Fqa">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="4hU-aD-VsB">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="4hU-aD-VsB">
                             <connections>
                                 <action selector="cancelButtonTouchUpInsideAction:" destination="rDx-Cg-fnM" id="kH3-om-hTc"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="mNc-tx-NNS">
+                            <connections>
+                                <action selector="doneButtonTouchUpInsideAction:" destination="rDx-Cg-fnM" id="FsL-oq-hH6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="textField" destination="jBp-Xz-zXh" id="mc6-rB-xOA"/>
+                        <outlet property="amountField" destination="jBp-Xz-zXh" id="2bi-kH-gr4"/>
+                        <outlet property="dateTextField" destination="9QM-JK-V6j" id="0lw-Kq-OHN"/>
                         <outlet property="titleTextField" destination="PmI-Pn-qLN" id="ppP-gN-O1a"/>
                     </connections>
                 </viewController>
@@ -177,13 +201,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Nny-PU-c2G">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="monthlyManagementTableViewCell" id="Nny-PU-c2G" customClass="DITMonthlyManagementTableViewCell" customModule="DropIt" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nny-PU-c2G" id="dQ5-pC-Ml9">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkc-ta-y69">
+                                            <rect key="frame" x="23" y="11" width="203" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="title" destination="dkc-ta-y69" id="lbK-5V-iJm"/>
+                                    <segue destination="lYH-6a-rdl" kind="show" id="wOu-Rg-zZg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -201,7 +238,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="028-qh-c4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="226" y="630"/>
+            <point key="canvasLocation" x="254" y="786"/>
         </scene>
         <!--월별관리 항목 추가-->
         <scene sceneID="fes-WX-QfL">
@@ -305,7 +342,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rwP-yH-UW0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4xN-S8-g78" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1073.913043478261" y="628.53260869565224"/>
+            <point key="canvasLocation" x="1294" y="786"/>
         </scene>
         <!--월별관리-->
         <scene sceneID="juP-Nd-EEi">
@@ -322,7 +359,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Mk-Ia-crn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-693" y="630"/>
+            <point key="canvasLocation" x="-693" y="786"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="C6Q-5M-hVX">
@@ -343,4 +380,7 @@
             <point key="canvasLocation" x="1120.8" y="-64.31784107946028"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="wOu-Rg-zZg"/>
+    </inferredMetricsTieBreakers>
 </document>

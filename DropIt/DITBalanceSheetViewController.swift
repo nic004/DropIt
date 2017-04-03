@@ -21,8 +21,9 @@ enum Direction: String {
 
 class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate, ListSectionObserver {
     let paidItemCellIdentifier = "PaidItemCell"
-    var numericInputCompletion: ((String, Float) -> Void)?
+    var numericInputCompletion: ((String, Float, Date) -> Void)?
     var monitor: ListMonitor<Amount>!
+    var aggregation: Aggregation!
     
     lazy var formatter: NumberFormatter = {
         let f = NumberFormatter()
@@ -39,10 +40,15 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard let begin = aggregation.begin, let end = aggregation.end else {
+            return
+        }
+        
         // Do any additional setup after loading the view.
         monitor = CoreStore.monitorSectionedList(
             From<Amount>(),
             SectionBy("direction"),
+            Where("date >= %@", begin) && Where("date <= %@", end),
             OrderBy(.descending("date")),
             Tweak { $0.fetchBatchSize = 20 }
         )
@@ -134,24 +140,24 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         }
     }
     
-    func addAmount(title: String, value: Float) {
+    func addAmount(title: String, value: Float, date: Date) {
         CoreStore.beginAsynchronous {
             let amount = $0.create(Into<Amount>())
             amount.title = title
-            amount.date = Date() as NSDate
+            amount.date = date as NSDate
             amount.value = Float(value)
             $0.commit()
         }
     }
     
-    func addIncomeItem(with title: String, value: Float) {
+    func addIncomeItem(with title: String, value: Float, date: Date) {
         NSLog("addIncomeItem \(value)")
-        addAmount(title: title, value: value)
+        addAmount(title: title, value: value, date: date)
     }
     
-    func addPaidItem(with title: String, value: Float) {
+    func addPaidItem(with title: String, value: Float, date: Date) {
         NSLog("addPaidItem \(value)")
-        addAmount(title: title, value: -value)
+        addAmount(title: title, value: -value, date: date)
     }
     
     // MARK: ListObserver

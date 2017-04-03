@@ -24,6 +24,7 @@
 		D8C3233C1E4308E2001B3869 /* MMNumberKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D8C3233B1E4308E2001B3869 /* MMNumberKeyboard.m */; };
 		D8C3233E1E430F05001B3869 /* DITNumericInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C3233D1E430F05001B3869 /* DITNumericInputViewController.swift */; };
 		D8D8B79B1E55BA3000F47C19 /* DITBalanceSheetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D8B79A1E55BA3000F47C19 /* DITBalanceSheetTableViewCell.swift */; };
+		D8DA802A1E92401100EC4377 /* DITMonthlyManagementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DA80291E92401100EC4377 /* DITMonthlyManagementTableViewCell.swift */; };
 		D8F6A92D1E41EFA100B54379 /* DropdownMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8F6A92C1E41EFA100B54379 /* DropdownMenu.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		D8C3233B1E4308E2001B3869 /* MMNumberKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMNumberKeyboard.m; path = "Libs/MMNumberKeyboard-master/Classes/MMNumberKeyboard.m"; sourceTree = "<group>"; };
 		D8C3233D1E430F05001B3869 /* DITNumericInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITNumericInputViewController.swift; sourceTree = "<group>"; };
 		D8D8B79A1E55BA3000F47C19 /* DITBalanceSheetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITBalanceSheetTableViewCell.swift; sourceTree = "<group>"; };
+		D8DA80291E92401100EC4377 /* DITMonthlyManagementTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITMonthlyManagementTableViewCell.swift; sourceTree = "<group>"; };
 		D8F6A92C1E41EFA100B54379 /* DropdownMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropdownMenu.framework; path = Carthage/Build/iOS/DropdownMenu.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 				D8AAD46D1E8121760016CB97 /* DITExtensions.swift */,
 				D86E8AF81E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift */,
 				D86E8AFA1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift */,
+				D8DA80291E92401100EC4377 /* DITMonthlyManagementTableViewCell.swift */,
 			);
 			path = DropIt;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				D8C3233C1E4308E2001B3869 /* MMNumberKeyboard.m in Sources */,
 				D86E8AFB1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift in Sources */,
 				D867BD531E2F3018006FE481 /* DITBalanceSheetViewController.swift in Sources */,
+				D8DA802A1E92401100EC4377 /* DITMonthlyManagementTableViewCell.swift in Sources */,
 				D88C6F2A1E80D0F800CCB153 /* Amount+Ext.swift in Sources */,
 				D867BD3E1E2F2BCF006FE481 /* AppDelegate.swift in Sources */,
 				D86E8AF91E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift in Sources */,
