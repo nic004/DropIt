@@ -4,4 +4,7 @@ use_frameworks!
 
 target 'DropIt' do
 pod 'PickerController', '~> 0.1.0'
+pod 'CoreStore'
+pod 'TBDropdownMenu'
+pod 'MMNumberKeyboard'
 end

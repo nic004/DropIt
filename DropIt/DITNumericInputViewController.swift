@@ -15,6 +15,7 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate,
     @IBOutlet weak var dateTextField: UITextField!
     
     let dateFormat = "yyyy. MM. dd."
+    var dependencyInjector: ((DITNumericInputViewController) -> Void)?
     var completion: ((String, Float, Date) -> Void)?
     lazy var formatter: NumberFormatter = {
         let f = NumberFormatter()
@@ -22,6 +23,7 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate,
         f.maximumFractionDigits = 10
         return f
     }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,8 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate,
         amountField.inputView = numberKeyboard
         
         NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange(_:)), name: .UITextFieldTextDidChange, object: nil)
+        
+        dependencyInjector?(self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -108,6 +112,12 @@ class DITNumericInputViewController: UIViewController, MMNumberKeyboardDelegate,
         }
         
         return false
+    }
+    
+    func setCurrent(title: String?, amount: Float, date: Date?) {
+        titleTextField.text = title
+        amountField.text = formatter.string(from: NSNumber(floatLiteral: Double(amount)))
+        dateTextField.text = date?.toString(format: dateFormat)
     }
     
 }

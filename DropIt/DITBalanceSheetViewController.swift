@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import DropdownMenu
+import TBDropdownMenu
 import CoreStore
 
 enum Direction: String {
@@ -21,7 +21,8 @@ enum Direction: String {
 
 class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate, ListSectionObserver {
     let paidItemCellIdentifier = "PaidItemCell"
-    var numericInputCompletion: ((String, Float, Date) -> Void)?
+//    var numericInputCompletion: ((String, Float, Date) -> Void)?
+    var numericInputVCIntializer: ((DITNumericInputViewController) -> Void)?
     var monitor: ListMonitor<Amount>!
     var aggregation: Aggregation!
     
@@ -70,7 +71,7 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         if segue.identifier == "numericInputSegue" {
             if let nvc = segue.destination as? UINavigationController,
                 let numericInputVC = nvc.topViewController as? DITNumericInputViewController {
-                numericInputVC.completion = numericInputCompletion
+                numericInputVC.dependencyInjector = numericInputVCIntializer
             }
         }
     }
@@ -85,10 +86,10 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     }
     
     func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectRowAt indexPath: IndexPath) {
-        numericInputCompletion = [addIncomeItem, addPaidItem][indexPath.row]
+        let completion = [addIncomeItem, addPaidItem][indexPath.row]
+        numericInputVCIntializer = { $0.completion = completion }
         self.performSegue(withIdentifier: "numericInputSegue", sender: self)
     }
-    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return monitor.numberOfSections()
@@ -110,6 +111,23 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
             bsCell.value.text = formatter.string(from: NSNumber(value: item.value))
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentAmount: Amount = monitor[indexPath]
+        numericInputVCIntializer = {
+            $0.setCurrent(title: currentAmount.title, amount: currentAmount.value, date: currentAmount.date as? Date)
+            $0.completion = { (title: String, amount: Float, date: Date) in
+                CoreStore.beginAsynchronous({ (t) in
+                    let a = t.edit(currentAmount)!
+                    a.title = title
+                    a.value = amount
+                    a.date = date as NSDate
+                    t.commit()
+                })
+            }
+        }
+        self.performSegue(withIdentifier: "numericInputSegue", sender: self)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -160,6 +178,9 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         addAmount(title: title, value: -value, date: date)
     }
     
+//    func updateAmount(with title: String, value: Float, date: Date) {
+//    }
+    
     // MARK: ListObserver
     
     func listMonitorWillChange(_ monitor: ListMonitor<Amount>) {
@@ -187,7 +208,13 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         self.tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
-    func listMonitor(_ monitor: ListMonitor<Amount>, didUpdateObject object: Amount, atIndexPath indexPath: IndexPath) {}
+    func listMonitor(_ monitor: ListMonitor<Amount>, didUpdateObject object: Amount, atIndexPath indexPath: IndexPath) {
+        if let cell = self.tableView.cellForRow(at: indexPath) as? DITBalanceSheetTableViewCell {
+            let item = monitor[indexPath]
+            cell.title.text = "\(item.title!) (\(item.date!.toString(format: "yyyy.MM.dd")))"
+            cell.value.text = formatter.string(from: NSNumber(value: item.value))
+        }
+    }
     
     func listMonitor(_ monitor: ListMonitor<Amount>, didMoveObject object: Amount, fromIndexPath: IndexPath, toIndexPath: IndexPath) {
         self.tableView.deleteRows(at: [fromIndexPath], with: .automatic)
