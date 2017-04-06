@@ -38,22 +38,16 @@ class DITPasteSNSViewController: UIViewController {
     */
     
     func parseTest() {
-//        let smsText = "[Web발신]\n하나,04/06,14:24\r\n445******08907\r\n출금6,120원\r\n네이버_LGU+\r\n잔액3,438,883원"
-        let hanaCardPattern = "(\\[Web발신\\])\\s*(.+),(\\d{2})\\/(\\d{2}),(\\d{2}):(\\d{2})\\s*([\\d|\\*]+)\\s*출금([\\d\\,]+)원\\s*(.+)\\s*잔액([\\,\\d{2,3}]*)"
+        smsText = "[Web발신]\n하나,04/06,14:24\r\n445******08907\r\n출금6,120원\r\n네이버_LGU+\r\n잔액3,438,883원"
+        let hanaCardPattern = "\\[Web발신\\]\\s*(.+),(\\d{2})\\/(\\d{2}),(\\d{2}):(\\d{2})\\s*([\\d|\\*]+)\\s*출금([\\d,]+)원\\s*(.+)\\s*잔액([\\d,]+)원"
         let regex = try! NSRegularExpression(pattern: hanaCardPattern, options: [])
-        let matches = regex.matches(in: smsText, options: [], range: NSRange(location: 0, length: smsText.characters.count))
-        for i in 1..<matches[0].numberOfRanges {
-            let range = matches[0].rangeAt(i)
-            //    print(range.location)
-            print(smsText.substring(with: smsText.range(from: range)!))
+        let matches = regex.matches(in: smsText, options: [], range: NSRange(location: 0, length: smsText.utf16.count))
+        guard matches.count > 0 && matches[0].rangeAt(0).location != NSNotFound else {
+            return
         }
         
-//        let trimmed = smsText//.replacingOccurrences(of: "[\\r\\n]", with: "", options: .regularExpression, range: nil)
-//        let hanaCardPattern = "(\\[Web발신\\])(.+)"
-////        let hanaCardPattern = "\\[Web발신\\][\\r\\n](.+),(\\d{2})\\/(\\d{2}),\\W*(\\d{2}):(\\d{2})[\\r\\n]([\\d|\\*]+)[\\r\\n]출금([\\d\\,]+)원[\\r\\n](.+)[\\r\\n]잔액([\\d\\,]+)원"
-//        let regex = try! NSRegularExpression(pattern: hanaCardPattern, options: [])
-//        let matches = regex.matches(in: smsText, options: [], range: NSRange(location: 0, length: smsText.characters.count))
-//        NSLog("%@", matches)
+        let match = matches[0]
+        let components = (1..<match.numberOfRanges).map { match.rangeAt($0) }.map { smsText.substring(with: smsText.range(from: $0)!) }
     }
     
     @IBAction func cancel(_ sender: Any) {
