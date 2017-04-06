@@ -14,6 +14,7 @@
 		D867BD481E2F2BCF006FE481 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D867BD471E2F2BCF006FE481 /* Assets.xcassets */; };
 		D867BD4B1E2F2BCF006FE481 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D867BD491E2F2BCF006FE481 /* LaunchScreen.storyboard */; };
 		D867BD531E2F3018006FE481 /* DITBalanceSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D867BD521E2F3018006FE481 /* DITBalanceSheetViewController.swift */; };
+		D86DFA451E963505009D3015 /* DITPasteSNSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86DFA441E963505009D3015 /* DITPasteSNSViewController.swift */; };
 		D86E8AF91E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86E8AF81E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift */; };
 		D86E8AFB1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86E8AFA1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift */; };
 		D86E8AFD1E825CEE00649AA8 /* podfile in Resources */ = {isa = PBXBuildFile; fileRef = D86E8AFC1E825CEE00649AA8 /* podfile */; };
@@ -37,6 +38,7 @@
 		D867BD4A1E2F2BCF006FE481 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D867BD4C1E2F2BCF006FE481 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D867BD521E2F3018006FE481 /* DITBalanceSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITBalanceSheetViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		D86DFA441E963505009D3015 /* DITPasteSNSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITPasteSNSViewController.swift; sourceTree = "<group>"; };
 		D86E8AF81E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITAddMonthlyManagementItemViewController.swift; sourceTree = "<group>"; };
 		D86E8AFA1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITMonthlyManagementTableViewController.swift; sourceTree = "<group>"; };
 		D86E8AFC1E825CEE00649AA8 /* podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -109,6 +111,7 @@
 				D86E8AF81E822E6200649AA8 /* DITAddMonthlyManagementItemViewController.swift */,
 				D86E8AFA1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift */,
 				D8DA80291E92401100EC4377 /* DITMonthlyManagementTableViewCell.swift */,
+				D86DFA441E963505009D3015 /* DITPasteSNSViewController.swift */,
 			);
 			path = DropIt;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				D8C3233E1E430F05001B3869 /* DITNumericInputViewController.swift in Sources */,
 				D867BD461E2F2BCF006FE481 /* DropIt.xcdatamodeld in Sources */,
 				D8D8B79B1E55BA3000F47C19 /* DITBalanceSheetTableViewCell.swift in Sources */,
+				D86DFA451E963505009D3015 /* DITPasteSNSViewController.swift in Sources */,
 				D8C3233C1E4308E2001B3869 /* MMNumberKeyboard.m in Sources */,
 				D86E8AFB1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift in Sources */,
 				D867BD531E2F3018006FE481 /* DITBalanceSheetViewController.swift in Sources */,

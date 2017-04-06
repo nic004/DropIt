@@ -21,7 +21,6 @@ enum Direction: String {
 
 class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate, ListSectionObserver {
     let paidItemCellIdentifier = "PaidItemCell"
-//    var numericInputCompletion: ((String, Float, Date) -> Void)?
     var numericInputVCIntializer: ((DITNumericInputViewController) -> Void)?
     var monitor: ListMonitor<Amount>!
     var aggregation: Aggregation!
@@ -116,7 +115,7 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentAmount: Amount = monitor[indexPath]
         numericInputVCIntializer = {
-            $0.setCurrent(title: currentAmount.title, amount: currentAmount.value, date: currentAmount.date as? Date)
+            $0.setCurrent(title: currentAmount.title, amount: currentAmount.value, date: currentAmount.date as Date?)
             $0.completion = { (title: String, amount: Float, date: Date) in
                 CoreStore.beginAsynchronous({ (t) in
                     let a = t.edit(currentAmount)!
