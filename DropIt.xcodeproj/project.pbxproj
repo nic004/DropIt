@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F0F77AB2318855D254AB71A /* Pods_DropIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACFB1E58319032AC0BC4208 /* Pods_DropIt.framework */; };
+		D8057E211E9776FD00E85767 /* DITSms.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8057E201E9776FD00E85767 /* DITSms.swift */; };
 		D867BD3E1E2F2BCF006FE481 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D867BD3D1E2F2BCF006FE481 /* AppDelegate.swift */; };
 		D867BD431E2F2BCF006FE481 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D867BD411E2F2BCF006FE481 /* Main.storyboard */; };
 		D867BD461E2F2BCF006FE481 /* DropIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D867BD441E2F2BCF006FE481 /* DropIt.xcdatamodeld */; };
@@ -30,6 +31,7 @@
 		2ACA7E668622815C35F33098 /* Pods-DropIt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropIt.release.xcconfig"; path = "Pods/Target Support Files/Pods-DropIt/Pods-DropIt.release.xcconfig"; sourceTree = "<group>"; };
 		9ACFB1E58319032AC0BC4208 /* Pods_DropIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DropIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C683721D4D1623C70290C40F /* Pods-DropIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DropIt/Pods-DropIt.debug.xcconfig"; sourceTree = "<group>"; };
+		D8057E201E9776FD00E85767 /* DITSms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DITSms.swift; sourceTree = "<group>"; };
 		D867BD3A1E2F2BCF006FE481 /* DropIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D867BD3D1E2F2BCF006FE481 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D867BD421E2F2BCF006FE481 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				D86E8AFA1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift */,
 				D8DA80291E92401100EC4377 /* DITMonthlyManagementTableViewCell.swift */,
 				D86DFA441E963505009D3015 /* DITPasteSNSViewController.swift */,
+				D8057E201E9776FD00E85767 /* DITSms.swift */,
 			);
 			path = DropIt;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				D8D8B79B1E55BA3000F47C19 /* DITBalanceSheetTableViewCell.swift in Sources */,
 				D86DFA451E963505009D3015 /* DITPasteSNSViewController.swift in Sources */,
 				D8C3233C1E4308E2001B3869 /* MMNumberKeyboard.m in Sources */,
+				D8057E211E9776FD00E85767 /* DITSms.swift in Sources */,
 				D86E8AFB1E823C8600649AA8 /* DITMonthlyManagementTableViewController.swift in Sources */,
 				D867BD531E2F3018006FE481 /* DITBalanceSheetViewController.swift in Sources */,
 				D8DA802A1E92401100EC4377 /* DITMonthlyManagementTableViewCell.swift in Sources */,

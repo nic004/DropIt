@@ -7,4 +7,5 @@ pod 'PickerController', '~> 0.1.0'
 pod 'CoreStore'
 pod 'TBDropdownMenu'
 pod 'MMNumberKeyboard'
+pod 'AFDateHelper', '~> 4.0.1'
 end

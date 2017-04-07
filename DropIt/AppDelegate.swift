@@ -48,13 +48,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        guard let rvc = window?.rootViewController,
-            let pasteSNS = rvc.storyboard?.instantiateViewController(withIdentifier: "PasteSNSController"),
-            UIPasteboard.general.hasStrings else {
-            return
+        guard UIPasteboard.general.hasStrings,
+            let sms = createSms(raw: UIPasteboard.general.string!),
+            let rvc = window?.rootViewController,
+            let nvc = rvc.storyboard?.instantiateViewController(withIdentifier: "PasteSNSController") as? UINavigationController,
+            let pasteSNS = nvc.topViewController as? DITPasteSNSViewController
+            else {
+                return
         }
         
-        rvc.present(pasteSNS, animated: true, completion: nil)
+        pasteSNS.sms = sms
+        rvc.present(nvc, animated: true, completion: nil)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

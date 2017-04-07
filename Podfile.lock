@@ -1,4 +1,5 @@
 PODS:
+  - AFDateHelper (4.0.2)
   - CoreStore (3.1.0)
   - MMNumberKeyboard (0.1.6)
   - PickerController (0.1.2):
@@ -7,18 +8,20 @@ PODS:
   - TBDropdownMenu (2.3.0)
 
 DEPENDENCIES:
+  - AFDateHelper (~> 4.0.1)
   - CoreStore
   - MMNumberKeyboard
   - PickerController (~> 0.1.0)
   - TBDropdownMenu
 
 SPEC CHECKSUMS:
+  AFDateHelper: fc58919d54a73aa098f0d86c7e7fc403768f5679
   CoreStore: 30b67eaf4204f33facd2b5605366ed684ad446b4
   MMNumberKeyboard: 4bac4f0402ef73c92bb6594d9c7469a9add63589
   PickerController: 56538c631937bde88c8b9fec8657b4116eb7d4fd
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TBDropdownMenu: 441774acacd9cdb44191caf218cbb8cb6bc81070
 
-PODFILE CHECKSUM: f74ace31989a8d727c2c2b949ad3fa8c0a7dfdad
+PODFILE CHECKSUM: cce3eefb01c4d8fc77a9961275bdd05d860a06b1
 
 COCOAPODS: 1.2.0

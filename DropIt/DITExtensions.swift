@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AFDateHelper
 
 class SharedDateFormatter {
     static let instance = SharedDateFormatter()
@@ -34,11 +35,41 @@ extension Date {
     func toString(format: String) -> String {
         return SharedDateFormatter.instance.stringWithFormat(format, date: self)
     }
+    
+    func adjustedDate(_ type: DateComponentType, value: Int) -> Date {
+        return adjust(.year, offset: value - (component(type) ?? 0))
+    }
+    
+    static func dateComponentsOfToday() -> DateComponents {
+        var calendar = Calendar.current
+        calendar.locale = Locale.current
+        return calendar.dateComponents([.year, .month, .day], from: Date())
+    }
+    
+    static var currentYear: Int {
+        get { return dateComponentsOfToday().year! }
+    }
+}
+
+class SharedNumberFormatter {
+    static let instance = SharedNumberFormatter()
+    lazy var formatter: NumberFormatter = {
+        let f = NumberFormatter()
+        f.numberStyle = .decimal
+        f.maximumFractionDigits = 10
+        f.negativePrefix = ""
+        return f
+    }()
+    private init() {}
 }
 
 extension String {
     func dateWith(format: String) -> Date? {
         return SharedDateFormatter.instance.date(from: self, format: format)
+    }
+    
+    static func formattedNumber(number: Float) -> String? {
+        return SharedNumberFormatter.instance.formatter.string(from: NSNumber(value: number))
     }
 }
 

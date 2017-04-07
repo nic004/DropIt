@@ -25,14 +25,6 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     var monitor: ListMonitor<Amount>!
     var aggregation: Aggregation!
     
-    lazy var formatter: NumberFormatter = {
-        let f = NumberFormatter()
-        f.numberStyle = .decimal
-        f.maximumFractionDigits = 10
-        f.negativePrefix = ""
-        return f
-    }()
-    
     deinit {
         monitor.removeObserver(self)
     }
@@ -107,7 +99,7 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         if let bsCell = cell as? DITBalanceSheetTableViewCell,
             let item = monitor[safeIndexPath: indexPath] {
             bsCell.title.text = "\(item.title!) (\(item.date!.toString(format: "yyyy.MM.dd")))"
-            bsCell.value.text = formatter.string(from: NSNumber(value: item.value))
+            bsCell.value.text = String.formattedNumber(number: item.value)
         }
         return cell
     }
@@ -211,7 +203,8 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
         if let cell = self.tableView.cellForRow(at: indexPath) as? DITBalanceSheetTableViewCell {
             let item = monitor[indexPath]
             cell.title.text = "\(item.title!) (\(item.date!.toString(format: "yyyy.MM.dd")))"
-            cell.value.text = formatter.string(from: NSNumber(value: item.value))
+            cell.value.text = String.formattedNumber(number: item.value)
+                //formatter.string(from: NSNumber(value: item.value))
         }
     }
     

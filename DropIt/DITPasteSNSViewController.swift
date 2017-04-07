@@ -9,23 +9,33 @@
 import UIKit
 
 class DITPasteSNSViewController: UIViewController {
-    var smsText: String!
-    @IBOutlet weak var sourceTextLabel: UILabel!
+    var sms: DITSms!
+    
+    @IBOutlet weak var rawTextLabel: UILabel!
+    @IBOutlet weak var sourceLabel: UILabel!
+    @IBOutlet weak var sourceIdLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var balanceLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        smsText = UIPasteboard.general.string
-        sourceTextLabel.text = smsText
-        parseTest()
+        rawTextLabel.text = sms.raw
+        sourceLabel.text = "카드/계좌: \(sms.source)"
+        sourceIdLabel.text = "카드/계좌 번호: \(sms.sourceId)"
+        dateLabel.text = "발생일자: \(sms.date.toString(format: "yyyy. MM. dd. HH:mm"))"
+        titleLabel.text = "제목: \(sms.title)"
+        amountLabel.text = "금액: \(String.formattedNumber(number: sms.amount) ?? "")"
+        balanceLabel.text = "잔액/누적액: \(String.formattedNumber(number: sms.balance) ?? "")"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -37,18 +47,6 @@ class DITPasteSNSViewController: UIViewController {
     }
     */
     
-    func parseTest() {
-        smsText = "[Web발신]\n하나,04/06,14:24\r\n445******08907\r\n출금6,120원\r\n네이버_LGU+\r\n잔액3,438,883원"
-        let hanaCardPattern = "\\[Web발신\\]\\s*(.+),(\\d{2})\\/(\\d{2}),(\\d{2}):(\\d{2})\\s*([\\d|\\*]+)\\s*출금([\\d,]+)원\\s*(.+)\\s*잔액([\\d,]+)원"
-        let regex = try! NSRegularExpression(pattern: hanaCardPattern, options: [])
-        let matches = regex.matches(in: smsText, options: [], range: NSRange(location: 0, length: smsText.utf16.count))
-        guard matches.count > 0 && matches[0].rangeAt(0).location != NSNotFound else {
-            return
-        }
-        
-        let match = matches[0]
-        let components = (1..<match.numberOfRanges).map { match.rangeAt($0) }.map { smsText.substring(with: smsText.range(from: $0)!) }
-    }
     
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)

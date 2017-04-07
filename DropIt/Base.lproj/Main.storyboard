@@ -398,36 +398,106 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffP-yD-mxB">
-                                <rect key="frame" x="58" y="308" width="299" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카드/계좌:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSK-6y-WcC">
+                                <rect key="frame" x="55" y="147" width="304" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="카드/계좌 번호:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8l-wF-LvZ">
+                                <rect key="frame" x="55" y="184" width="304" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="발생일자:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Xx-XS-Teb">
+                                <rect key="frame" x="55" y="213" width="304" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rog-Ez-ew1">
+                                <rect key="frame" x="55" y="248" width="304" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="금액:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgH-P9-yZR">
+                                <rect key="frame" x="55" y="277" width="304" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffP-yD-mxB">
+                                <rect key="frame" x="55" y="479" width="304" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hRL-of-hd1"/>
+                                </constraints>
                                 <state key="normal" title="주거래 통장 잔액 반영">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBK-lo-TD8">
-                                <rect key="frame" x="58" y="387" width="299" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBK-lo-TD8">
+                                <rect key="frame" x="55" y="558" width="304" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="YeC-ud-7dd"/>
+                                </constraints>
                                 <state key="normal" title="지출 내역 등록">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGv-5S-tYR">
-                                <rect key="frame" x="58" y="465" width="299" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGv-5S-tYR">
+                                <rect key="frame" x="55" y="636" width="304" height="50"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="RjN-ZB-83O"/>
+                                </constraints>
                                 <state key="normal" title="수입 내역 등록">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="잔액/누적액:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UII-ZX-BjX">
+                                <rect key="frame" x="55" y="314" width="304" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wgH-P9-yZR" firstAttribute="top" secondItem="rog-Ez-ew1" secondAttribute="bottom" constant="12" id="0Dp-el-0kK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UII-ZX-BjX" secondAttribute="trailing" constant="35" id="0e5-Sf-JMP"/>
+                            <constraint firstItem="nBK-lo-TD8" firstAttribute="top" secondItem="ffP-yD-mxB" secondAttribute="bottom" constant="29" id="2rp-kP-JrH"/>
+                            <constraint firstItem="wgH-P9-yZR" firstAttribute="leading" secondItem="k9Y-Sv-36A" secondAttribute="leadingMargin" constant="35" id="72K-c2-GuL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nBK-lo-TD8" secondAttribute="trailing" constant="35" id="AK6-8z-P2Y"/>
+                            <constraint firstItem="VGv-5S-tYR" firstAttribute="leading" secondItem="k9Y-Sv-36A" secondAttribute="leadingMargin" constant="35" id="IpL-RV-yhV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rog-Ez-ew1" secondAttribute="trailing" constant="35" id="LPF-R6-9VG"/>
+                            <constraint firstItem="2Xx-XS-Teb" firstAttribute="leading" secondItem="k9Y-Sv-36A" secondAttribute="leadingMargin" constant="35" id="OcH-D6-Egx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ffP-yD-mxB" secondAttribute="trailing" constant="35" id="RWR-6f-tTf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iGS-Bo-hYn" secondAttribute="trailing" constant="35" id="Rgg-0g-B8B"/>
+                            <constraint firstItem="rog-Ez-ew1" firstAttribute="leading" secondItem="k9Y-Sv-36A" secondAttribute="leadingMargin" constant="35" id="RzR-js-UqF"/>
+                            <constraint firstItem="UII-ZX-BjX" firstAttribute="top" secondItem="wgH-P9-yZR" secondAttribute="bottom" constant="20" id="S16-cF-zxK"/>
+                            <constraint firstItem="UII-ZX-BjX" firstAttribute="leading" secondItem="k9Y-Sv-36A" secondAttribute="leadingMargin" constant="35" id="TCh-ID-9XA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gSK-6y-WcC" secondAttribute="trailing" constant="35" id="TV4-fs-IXJ"/>
                             <constraint firstItem="iGS-Bo-hYn" firstAttribute="leading" secondItem="k9Y-Sv-36A" secondAttribute="leadingMargin" constant="35" id="TeZ-F1-TV0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Xx-XS-Teb" secondAttribute="trailing" constant="35" id="U7E-fI-SSI"/>
+                            <constraint firstItem="2Xx-XS-Teb" firstAttribute="top" secondItem="Y8l-wF-LvZ" secondAttribute="bottom" constant="12" id="UOt-vg-46V"/>
+                            <constraint firstItem="VGv-5S-tYR" firstAttribute="top" secondItem="nBK-lo-TD8" secondAttribute="bottom" constant="28" id="Uea-og-vcm"/>
+                            <constraint firstItem="Y8l-wF-LvZ" firstAttribute="leading" secondItem="k9Y-Sv-36A" secondAttribute="leadingMargin" constant="35" id="VhQ-zM-5LT"/>
+                            <constraint firstItem="gSK-6y-WcC" firstAttribute="top" secondItem="iGS-Bo-hYn" secondAttribute="bottom" constant="8" id="eDN-sL-L8n"/>
+                            <constraint firstItem="rog-Ez-ew1" firstAttribute="top" secondItem="2Xx-XS-Teb" secondAttribute="bottom" constant="18" id="eu0-hV-nZm"/>
+                            <constraint firstItem="wgH-P9-yZR" firstAttribute="top" secondItem="rog-Ez-ew1" secondAttribute="bottom" constant="12" id="iUs-Nf-UWC"/>
+                            <constraint firstItem="ffP-yD-mxB" firstAttribute="leading" secondItem="k9Y-Sv-36A" secondAttribute="leadingMargin" constant="35" id="iod-mj-Bdm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wgH-P9-yZR" secondAttribute="trailing" constant="35" id="jvY-3L-lxD"/>
                             <constraint firstItem="iGS-Bo-hYn" firstAttribute="top" secondItem="2XV-ZH-lRT" secondAttribute="bottom" constant="35" id="mva-Zr-OOJ"/>
+                            <constraint firstItem="rW1-H5-z2g" firstAttribute="top" secondItem="VGv-5S-tYR" secondAttribute="bottom" constant="50" id="r1k-G0-UqI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VGv-5S-tYR" secondAttribute="trailing" constant="35" id="r5O-UD-exb"/>
+                            <constraint firstItem="gSK-6y-WcC" firstAttribute="leading" secondItem="k9Y-Sv-36A" secondAttribute="leadingMargin" constant="35" id="tok-G2-LsQ"/>
+                            <constraint firstItem="Y8l-wF-LvZ" firstAttribute="top" secondItem="gSK-6y-WcC" secondAttribute="bottom" constant="20" id="vdk-dP-2rD"/>
+                            <constraint firstItem="nBK-lo-TD8" firstAttribute="leading" secondItem="k9Y-Sv-36A" secondAttribute="leadingMargin" constant="35" id="wmq-93-gFo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Y8l-wF-LvZ" secondAttribute="trailing" constant="35" id="xU3-1r-LkG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="SNS 붙여넣기" id="bdD-EA-XiZ">
@@ -438,7 +508,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="sourceTextLabel" destination="iGS-Bo-hYn" id="Ira-2L-fQS"/>
+                        <outlet property="amountLabel" destination="wgH-P9-yZR" id="0yn-Gk-MkY"/>
+                        <outlet property="balanceLabel" destination="UII-ZX-BjX" id="0i2-Tf-DEw"/>
+                        <outlet property="dateLabel" destination="2Xx-XS-Teb" id="72m-3Q-VIl"/>
+                        <outlet property="rawTextLabel" destination="iGS-Bo-hYn" id="LXz-2D-EU7"/>
+                        <outlet property="sourceIdLabel" destination="Y8l-wF-LvZ" id="A6X-Gf-oBh"/>
+                        <outlet property="sourceLabel" destination="gSK-6y-WcC" id="SXr-9j-UgH"/>
+                        <outlet property="titleLabel" destination="rog-Ez-ew1" id="Iql-Pc-0xq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HGP-2Q-V6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
