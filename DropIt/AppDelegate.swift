@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) {
             CoreStore.defaultStack = DataStack(model: managedObjectModel)
             do {
-                try CoreStore.addStorageAndWait(SQLiteStore.self)
+                let store = SQLiteStore()
+                store.localStorageOptions = .allowSynchronousLightweightMigration
+                try CoreStore.addStorageAndWait(store)
             }
             catch {
                 NSLog("addStorageAndWait failed")

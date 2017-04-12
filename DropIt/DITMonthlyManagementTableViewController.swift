@@ -28,6 +28,15 @@ class DITMonthlyManagementTableViewController: UITableViewController, ListSectio
             Tweak { $0.fetchBatchSize = 20 }
         )
         monitor.addObserver(self)
+        
+        // temp data update
+//        CoreStore.beginAsynchronous { (t) -> Void in
+//            if let agg = t.fetchOne(From<Aggregation>()),
+//                let currentAmounts = t.fetchAll(From<Amount>(), Where("aggregation == nil")), currentAmounts.count > 0 {
+//                agg.amounts = NSSet(array: currentAmounts)
+//                t.commit()
+//            }
+//        }
     }
 
     override func didReceiveMemoryWarning() {

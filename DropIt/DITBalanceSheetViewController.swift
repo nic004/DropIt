@@ -32,15 +32,16 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let begin = aggregation.begin, let end = aggregation.end else {
-            return
-        }
+//        guard let _ = aggregation.begin, let _ = aggregation.end else {
+//            return
+//        }
         
         // Do any additional setup after loading the view.
         monitor = CoreStore.monitorSectionedList(
             From<Amount>(),
             SectionBy("direction"),
-            Where("date >= %@", begin) && Where("date <= %@", end),
+//            Where("date >= %@", begin) && Where("date <= %@", end),
+            Where("aggregation == %@", aggregation),
             OrderBy(.descending("date")),
             Tweak { $0.fetchBatchSize = 20 }
         )
@@ -155,6 +156,9 @@ class DITBalanceSheetViewController: UITableViewController, DropdownMenuDelegate
             amount.title = title
             amount.date = date as NSDate
             amount.value = Float(value)
+            if let agg = $0.fetchExisting(self.aggregation) {
+                amount.aggregation = agg
+            }
             $0.commit()
         }
     }
